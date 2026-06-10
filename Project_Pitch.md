@@ -133,9 +133,10 @@ The model will be evaluated using:
 Target performance for the proof-of-concept:
 
 Metric	Target
-ROUGE-1	≥ 0.35
-ROUGE-2	≥ 0.15
-ROUGE-L	≥ 0.30
+
+- ROUGE-1	≥ 0.35
+- ROUGE-2	≥ 0.15
+- ROUGE-L	≥ 0.30
 
 ### Business Metrics
 
