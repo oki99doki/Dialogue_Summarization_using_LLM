@@ -27,54 +27,67 @@ This project uses the SAMSum dataset, a benchmark dataset for dialogue summariza
 
 Dataset statistics:
 
-Split	Examples
-Train	14,732
-Validation	818
-Test	819
+
+|Split | Examples |
+|---------|----------|
+| Train  | 14,732  |
+| Validation  | 818  |
+| Test  | 819  |
 
 The final model was trained on approximately 12,000 dialogue-summary pairs (~81% of the available training data).
 
 ## Model Architecture
 
-The model uses a transformer-based encoder-decoder architecture implemented with Hugging Face's EncoderDecoderModel.
+The model uses a transformer-based encoder-decoder architecture implemented with Hugging Face's `EncoderDecoderModel`.
 
 ### Encoder
 
-- Model: bert-base-uncased
+- Model: `bert-base-uncased`
 - Purpose: Encode dialogue conversations into contextual representations.
 
 ### Decoder
 
-- Model: bert-base-uncased
+- Model: `bert-base-uncased`
 - Purpose: Generate abstractive summaries from encoded dialogue representations.
 
 ### Architecture
 
 Dialogue
-    ↓
+
+↓
+
 Tokenizer
-    ↓
+
+↓
+
 BERT Encoder
-    ↓
+
+↓
+
 Contextual Representations
-    ↓
+
+↓
+
 BERT Decoder
-    ↓
+
+↓
+
 Generated Summary
 
 ## Training Configuration
 
 ### Final Model Parameters
 
-Parameter	Value
-Training Examples	12,000
-Validation Examples	800
-Test Examples	400
-Max Input Length	256
-Max Target Length	64
-Batch Size	4
-Epochs	5
-Learning Rate	3e-5
+|Parameter | Value |
+|----------|-------|
+| Training Examples  | 12,000  |
+| Validation Examples  | 818  |
+| Test Examples  | 400  |
+| Max Input Length  | 256  |
+| Max Target Length  | 64  |
+| Batch Size  | 4  |
+| Epochs  | 5  |
+| Learning Rate  | 3e-5  |
 
 ### Optimization Techniques
 
@@ -87,33 +100,35 @@ Learning Rate	3e-5
 
 Generation parameters:
 
+```python
 num_beams = 4
 min_length = 8
 max_length = 64
 no_repeat_ngram_size = 3
 length_penalty = 2.0
 early_stopping = True
-
-
+```
 ## Experimental Results
 
 Model performance improved significantly as additional training data was introduced.
 
 ### ROUGE Score Progression
 
-Experiment	Train Size	ROUGE-1	ROUGE-2	ROUGE-L
-Initial Model	1,000	0.146	0.016	0.114
-Intermediate Model	3,000	0.197	0.036	0.159
-Expanded Training	4,000	0.268	0.071	0.216
-Final Model	12,000	0.376	0.126	0.301
+| Experiment	| Train Size	| ROUGE-1	| ROUGE-2	| ROUGE-L |
+|---------------|---------------|-----------|-----------|---------|
+| Initial Model	| 1,000	        | 0.146	    | 0.016    	| 0.114   |
+| Intermediate Model |	3,000 |	0.197 |	0.036 |	0.159 |
+| Expanded Training	| 4,000	| 0.268	| 0.071	| 0.216 |
+| Final Model |	12,000 |	0.376 |	0.126 |	0.301 |
 
 ### Final Results
 
-Metric	Score
-ROUGE-1	0.376
-ROUGE-2	0.126
-ROUGE-L	0.301
-ROUGE-Lsum	0.301
+|Metric | Score |
+|----------|-------|
+| ROUGE-1  | 0.376  |
+| ROUGE-2  | 0.126  |
+| ROUGE-L  | 0.301  |
+| ROUGE-Lsum  | 0.301  |
 
 ## Evaluation and Analysis
 
